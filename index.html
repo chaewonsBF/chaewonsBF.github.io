@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Thomas Tran's Portfolio ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #FF6EC7 0%, #7FDBFF 50%, #FFDC00 100%);
+            font-family: 'Comic Sans MS', 'Courier New', monospace;
+            color: #000;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            background: linear-gradient(to right, #FF00FF, #00FFFF, #FFFF00);
+            border: 5px solid #000;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.5);
+            animation: rainbow-border 3s infinite;
+        }
+
+        @keyframes rainbow-border {
+            0% { border-color: #FF00FF; }
+            33% { border-color: #00FFFF; }
+            66% { border-color: #FFFF00; }
+            100% { border-color: #FF00FF; }
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 3px 3px #FF00FF, 6px 6px #00FFFF;
+            color: #FFF;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            25% { transform: translate(-2px, 2px); }
+            50% { transform: translate(2px, -2px); }
+            75% { transform: translate(-2px, -2px); }
+        }
+
+        .welcome-banner {
+            background: #FFFF00;
+            border: 3px dashed #FF00FF;
+            padding: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0; }
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border: 5px solid #000;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+        }
+
+        .section h2 {
+            background: linear-gradient(to right, #FF00FF, #00FFFF);
+            color: #FFF;
+            padding: 10px;
+            margin: -25px -25px 20px -25px;
+            border-bottom: 5px solid #000;
+            font-size: 2em;
+            text-shadow: 2px 2px #000;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #FFB6C1 0%, #87CEEB 100%);
+            border: 3px solid #000;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: rotate(-2deg) scale(1.05);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .project-card h3 {
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .na-tag {
+            display: inline-block;
+            background: #FF00FF;
+            color: #FFF;
+            padding: 5px 10px;
+            font-weight: bold;
+            border: 2px solid #000;
+            margin-top: 10px;
+        }
+
+        .click-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #FFFF00;
+            border: 3px solid #000;
+            padding: 15px;
+            font-weight: bold;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .gif-zone {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .spinning-logo {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #FF00FF, #00FFFF);
+            border: 3px solid #000;
+            border-radius: 50%;
+            animation: spin 3s linear infinite;
+            margin: 10px;
+            line-height: 100px;
+            font-size: 2em;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .marquee {
+            background: #000;
+            color: #00FF00;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 20px 0;
+            border: 3px solid #00FF00;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        button {
+            background: linear-gradient(to bottom, #FF00FF, #FF00AA);
+            color: #FFF;
+            border: 3px solid #000;
+            padding: 10px 20px;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.5);
+            transition: all 0.1s;
+        }
+
+        button:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+        }
+
+        button:active {
+            transform: translate(3px, 3px);
+            box-shadow: none;
+        }
+
+        .under-construction {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .construction-gif {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #FFFF00 25%, #000 25%, #000 50%, #FFFF00 50%, #FFFF00 75%, #000 75%, #000);
+            background-size: 20px 20px;
+            animation: construction 1s linear infinite;
+            display: inline-block;
+            border: 3px solid #000;
+        }
+
+        @keyframes construction {
+            from { background-position: 0 0; }
+            to { background-position: 20px 20px; }
+        }
+
+        footer {
+            background: #000;
+            color: #00FF00;
+            text-align: center;
+            padding: 20px;
+            border: 5px solid #00FF00;
+            margin-top: 30px;
+        }
+
+        .webring {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .webring a {
+            color: #00FFFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hit-counter {
+            background: #000;
+            color: #FF0000;
+            padding: 5px 15px;
+            border: 2px solid #FF0000;
+            display: inline-block;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <header>
+            <h1>🌟 THOMAS TRAN'S PORTFOLIO 🌟</h1>
+            <p style="color: #FFF; font-size: 1.2em; margin-top: 10px;">VR & Game Dev Major | Business Minor | Ohio University</p>
+        </header>
+
+        <div class="welcome-banner">
+            <span class="blink">🚀 UNDER CONSTRUCTION 🚀</span> | Best viewed in Netscape Navigator!
+        </div>
+
+        <div class="marquee">
+            <div class="marquee-content">
+                ★ Thank you for visiting my page! ★ Don't forget to sign my guestbook! ★ This site is optimized for 800x600 ★ Email me! ★
+            </div>
+        </div>
+
+        <section class="section">
+            <h2>👾 About Me</h2>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Hey there! I'm <strong>Thomas Tran</strong>, a Virtual Reality & Game Development major at Ohio University with a minor in Business. 
+                I'm passionate about creating immersive experiences and bringing ideas to life through technology!
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6; margin-top: 15px;">
+                <strong>What I'm Into:</strong><br>
+                🎮 Game Development | 🥽 Virtual Reality | 💼 IT & Project Management | 🎬 Video Editing
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6; margin-top: 15px;">
+                <strong>Currently Pursuing:</strong><br>
+                📚 CAPM Certificate (Project Manager)<br>
+                ☁️ AWS Cloud Practitioner Certificate
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6; margin-top: 15px;">
+                📧 <strong>Email:</strong> <a href="mailto:thomastran34936@gmail.com" style="color: #FF00FF; font-weight: bold;">thomastran34936@gmail.com</a>
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>📁 My Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>🎮 Game Development</h3>
+                    <p>Creating immersive gaming experiences and interactive gameplay!</p>
+                    <span class="na-tag">N/A</span>
+                </div>
+                <div class="project-card">
+                    <h3>🥽 VR Projects</h3>
+                    <p>Exploring virtual reality and immersive technologies!</p>
+                    <span class="na-tag">N/A</span>
+                </div>
+                <div class="project-card">
+                    <h3>💼 Project Management</h3>
+                    <p>Leading teams and delivering successful projects!</p>
+                    <span class="na-tag">N/A</span>
+                </div>
+                <div class="project-card">
+                    <h3>🎬 Video Editing</h3>
+                    <p>Crafting compelling visual stories and content!</p>
+                    <span class="na-tag">N/A</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🏆 My Certificates</h2>
+            <div class="under-construction">
+                <div class="construction-gif"></div>
+                <p style="margin: 10px 0; font-weight: bold;">Currently studying for these certifications!</p>
+                <div class="construction-gif"></div>
+            </div>
+            <ul style="list-style: none; padding: 20px;">
+                <li style="margin: 10px 0; font-size: 1.1em;">📜 <strong>CAPM Certificate</strong> (Project Manager) - <span class="na-tag">IN PROGRESS</span></li>
+                <li style="margin: 10px 0; font-size: 1.1em;">📜 <strong>AWS Cloud Practitioner Certificate</strong> - <span class="na-tag">IN PROGRESS</span></li>
+                <li style="margin: 10px 0; font-size: 1.1em;">📜 Future Certifications - <span class="na-tag">N/A</span></li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>🎮 Fun Zone!</h2>
+            <div class="gif-zone">
+                <div class="spinning-logo">⭐</div>
+                <div class="spinning-logo" style="animation-direction: reverse;">💫</div>
+                <div class="spinning-logo">🌈</div>
+            </div>
+            <div style="text-align: center; margin: 20px 0;">
+                <button onclick="changeColor()">Change Background!</button>
+                <button onclick="playSound()">Click Me!</button>
+                <button onclick="surprise()">Mystery Button</button>
+            </div>
+        </section>
+
+        <footer>
+            <p>✨ You are visitor number: <span class="hit-counter">000<span id="visitors">1337</span></span> ✨</p>
+            <div class="webring">
+                <a href="#">&lt;&lt; Previous</a> |
+                <a href="#">Random</a> |
+                <a href="#">Next &gt;&gt;</a>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9em;">
+                © 2024 Thomas Tran | Made with 💜 and HTML | <a href="mailto:thomastran34936@gmail.com" style="color: #00FFFF;" class="blink">thomastran34936@gmail.com</a>
+            </p>
+        </footer>
+    </div>
+
+    <div class="click-counter">
+        Clicks: <span id="clickCount">0</span>
+    </div>
+
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Click counter
+        let clicks = 0;
+        document.body.addEventListener('click', function() {
+            clicks++;
+            document.getElementById('clickCount').textContent = clicks;
+        });
+
+        // Color changer
+        const colors = [
+            'linear-gradient(45deg, #FF6EC7 0%, #7FDBFF 50%, #FFDC00 100%)',
+            'linear-gradient(45deg, #00FF00 0%, #FF00FF 50%, #00FFFF 100%)',
+            'linear-gradient(45deg, #FFB6C1 0%, #87CEEB 50%, #98FB98 100%)',
+            'linear-gradient(45deg, #FF1493 0%, #FF6347 50%, #FFD700 100%)'
+        ];
+        let colorIndex = 0;
+
+        function changeColor() {
+            colorIndex = (colorIndex + 1) % colors.length;
+            document.body.style.background = colors[colorIndex];
+        }
+
+        function playSound() {
+            alert('🎵 *BEEP BOOP* 🎵');
+        }
+
+        function surprise() {
+            const surprises = [
+                'You found a secret! 🎉',
+                'Congratulations! You clicked a button! 🏆',
+                '✨ MAGICAL ✨',
+                'Have a great day! 🌈',
+                'You are awesome! 💫'
+            ];
+            alert(surprises[Math.floor(Math.random() * surprises.length)]);
+        }
+
+        // Animate visitor counter
+        let visitorCount = 1337;
+        setInterval(() => {
+            visitorCount++;
+            document.getElementById('visitors').textContent = visitorCount;
+        }, 5000);
+    </script>
+</body>
+</html>
